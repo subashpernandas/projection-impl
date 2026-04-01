@@ -24,7 +24,7 @@ services:
 
   app:
     build: .
-    container_name: projection_app
+    #container_name: projection_app
     depends_on:
       mysql:
         condition: service_healthy
