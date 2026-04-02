@@ -22,7 +22,7 @@ services:
     restart: unless-stopped
 
   app:
-    image: <DOCKER_USER>/projection-app:${IMAGE_TAG}   # dynamically injected by Jenkins
+    image: ${DOCKER_USER}/projection-app:${IMAGE_TAG}   # dynamically injected by Jenkins
     container_name: projection-app
     depends_on:
       - mysql
