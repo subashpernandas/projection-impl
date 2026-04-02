@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StudentDTO {
+public class StudentDTO {  // we can implement DTO projection using final called immutable
 
     private Integer id;
 
@@ -20,5 +20,11 @@ public class StudentDTO {
         this.name = name;
         this.dept = dept;
         this.age = age;
+    }
+
+    // use of DTO projection
+
+    public String getFullName() {
+        return name.toUpperCase() + " " +dept;
     }
 }

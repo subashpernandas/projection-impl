@@ -3,7 +3,6 @@ version: '3.8'
 services:
   mysql:
     image: mysql:8.0
-    #container_name: custom_co
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: student_db
@@ -23,8 +22,7 @@ services:
       timeout: 5s
 
   app:
-    build: .
-    #container_name: projection_app
+    image: savarisubash/projection-app:latest   # pull from Docker Hub
     depends_on:
       mysql:
         condition: service_healthy
@@ -44,4 +42,4 @@ volumes:
   mysql-data:
 
 networks:
-  app-network: {}  # Correct way to define an empty network
+  app-network: {}
