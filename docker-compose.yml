@@ -22,7 +22,7 @@ services:
       timeout: 5s
 
   app:
-    image: savarisubash/projection-app:latest   # pull from Docker Hub
+    image: <DOCKER_USER>/projection-app:${IMAGE_TAG}   # pull from Docker Hub
     depends_on:
       mysql:
         condition: service_healthy
