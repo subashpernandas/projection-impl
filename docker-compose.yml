@@ -1,8 +1,7 @@
-version: '3.8'
-
 services:
   mysql:
     image: mysql:8.0
+    container_name: mysql-db
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: student_db
@@ -20,12 +19,13 @@ services:
       interval: 5s
       retries: 10
       timeout: 5s
+    restart: unless-stopped
 
   app:
-    image: <DOCKER_USER>/projection-app:${IMAGE_TAG}   # pull from Docker Hub
+    image: <DOCKER_USER>/projection-app:${IMAGE_TAG}   # dynamically injected by Jenkins
+    container_name: projection-app
     depends_on:
-      mysql:
-        condition: service_healthy
+      - mysql
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/student_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Kolkata
       SPRING_DATASOURCE_USERNAME: user
@@ -37,6 +37,7 @@ services:
       - "9090:9090"
     networks:
       - app-network
+    restart: unless-stopped
 
 volumes:
   mysql-data:
