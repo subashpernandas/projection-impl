@@ -23,7 +23,7 @@ services:
 
   app:
     #build: .
-    image: subashsavari/projection-app:${IMAGE_TAG}   # dynamically injected by Jenkins
+    image: savarisubash/projection-app:${IMAGE_TAG}   # dynamically injected by Jenkins
     container_name: projection-app
     depends_on:
       - mysql
